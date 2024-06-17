@@ -73,17 +73,17 @@ function listarGestion(){
 function completarFila(element,index,arr){
   arr[index] = document.querySelector("#tbl_gestion tbody").innerHTML +=
   `<tr>
-  <td>${element.id_gestion}</td>
-  <td>${element.nombre_usuario}</td>
-  <td>${element.nombre_cliente}</td>
-  <td>${element.nombre_tipo_gestion}</td>
-  <td>${element.nombre_resultado}</td>
-  <td>${element.comentarios}</td>
-  <td>${element.fecha_registro}</td>
-  <td>
-  <a href='actualizar.html?id=${element.id_gestion}' class='btn btn-warning'>Actualizar</a> 
-  <a href='eliminar.html?id=${element.id_gestion}' class='btn btn-danger'>Eliminar</a> 
-  </td>
+    <td>${element.id_gestion}</td>
+    <td>${element.nombre_usuario}</td>
+    <td>${element.nombre_cliente}</td>
+    <td>${element.nombre_tipo_gestion}</td>
+    <td>${element.nombre_resultado}</td>
+    <td>${element.comentarios}</td>
+    <td>${element.fecha_registro}</td>
+    <td>
+    <a href='actualizar.html?id=${element.id_gestion}' class='btn btn-warning'>Actualizar</a> 
+    <a href='eliminar.html?id=${element.id_gestion}' class='btn btn-danger'>Eliminar</a> 
+    </td>
   </tr>`
 }
 
