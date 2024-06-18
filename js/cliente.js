@@ -164,6 +164,70 @@ function completarFormulario(element, index, arr) {
 }
 
 
+function eliminarCliente(){
+
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  //Opciones de solicitud
+  const requestOptions = {
+    method: "DELETE",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+  
+  //Ejecutamos solicitud
+  fetch("http://144.126.210.74:8080/api/cliente/"+ g_id_cliente, requestOptions)
+    .then((response) => {
+      
+      //Cambiar por elementos de bootstrap
+      if(response.status == 200){
+        location.href ="listar.html";
+      }
+      if(response.status == 400){
+        alert("No es posible eliminar. Registro está siendo utilizado.");
+      }
+    })
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+}
+
+
+function obtenerIdEliminar(){
+  //obtener datos de la solicitud
+  const queryString  = window.location.search;
+  //obtenemos todos los parámetros
+  const parametros = new URLSearchParams(queryString);
+  //Nos posicionamos sobre un parámetro y obtenemos su valor actual
+  const p_id_cliente = parametros.get('id');
+  g_id_cliente = p_id_cliente;
+  obtenerDatosEliminar(g_id_cliente);
+
+}
+
+
+function obtenerDatosEliminar(p_id_cliente){
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+  
+  fetch("http://144.126.210.74:8080/api/cliente/"+p_id_cliente, requestOptions)
+    .then((response) => response.json())
+    .then((json) => json.forEach(completarEtiqueta))
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+
+}
+
+
+function completarEtiqueta(element,index,arr){
+  let nombres_cliente = element.nombre_cliente;
+  let apellidos_cliente = element.apellidos_cliente;
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar el cliente? <b>" + nombres_cliente + apellidos_cliente + "</b>";
+}
+
+
 function formatearFechaHora(fecha_registro){
   let fechaHoraActual = new Date(fecha_registro);
   let fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES',{
