@@ -26,11 +26,11 @@ function completarFila(element,index,arr){
     <td>${fechaHoraFormateada}</td>
     <td>
     <a href='actualizar.html?id=${element.id_resultado}' class='btn btn-warning'>Actualizar</a> 
-    <a href='#' class='btn btn-danger'>Eliminar</a> 
+    <a href='eliminar.html?id=${element.id_resultado}' class='btn btn-danger'>Eliminar</a> 
     </td>
   </tr>`
     // <a href='#' class='btn btn-warning'>Actualizar</a> 
-    // <a href='eliminar.html?id=${element.id_resultado}' class='btn btn-danger'>Eliminar</a> 
+    // <a href='#' class='btn btn-danger'>Eliminar</a> 
 }
 
 
@@ -120,7 +120,7 @@ function obtenerDatosActualizar(p_id_resultado){
     redirect: "follow"
   };
   
-  fetch("http://144.126.210.74:8080/api/tipo_gestion/"+p_id_resultado, requestOptions)
+  fetch("http://144.126.210.74:8080/api/resultado/"+p_id_resultado, requestOptions)
     .then((response) => response.json())
     .then((json) => json.forEach(completarFormulario))
     .then((result) => console.log(result))
@@ -131,6 +131,71 @@ function obtenerDatosActualizar(p_id_resultado){
 function completarFormulario(element, index, arr) {
   let nombre_resultado = element.nombre_resultado;
   document.getElementById('txt_nombre').value = nombre_resultado;
+}
+
+
+function eliminarResultado(){
+
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  //Opciones de solicitud
+  const requestOptions = {
+    method: "DELETE",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+  
+  //Ejecutamos solicitud
+  fetch("http://144.126.210.74:8080/api/resultado/"+ g_id_resultado, requestOptions)
+    .then((response) => {
+      
+      //Cambiar por elementos de bootstrap
+      if(response.status == 200){
+        location.href ="listar.html";
+      }
+      if(response.status == 400){
+        alert("No es posible eliminar. Registro está siendo utilizado.");
+      }
+    })
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+}
+
+
+function obtenerIdEliminar(){
+  //obtener datos de la solicitud
+  const queryString  = window.location.search;
+  //obtenemos todos los parámetros
+  const parametros = new URLSearchParams(queryString);
+  //Nos posicionamos sobre un parámetro y obtenemos su valor actual
+  const p_id_resultado = parametros.get('id');
+  g_id_resultado = p_id_resultado;
+  obtenerDatosEliminar(g_id_resultado);
+
+}
+
+
+function obtenerDatosEliminar(p_id_resultado){
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+  
+  fetch("http://144.126.210.74:8080/api/resultado/"+p_id_resultado, requestOptions)
+    .then((response) => response.json())
+    .then((json) => json.forEach(completarEtiqueta))
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+
+}
+
+
+function completarEtiqueta(element,index,arr){
+  var nombre_resultado = element.nombre_resultado;
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar el resultado? <b>" + nombre_resultado + "</b>";
+
+
 }
 
 
