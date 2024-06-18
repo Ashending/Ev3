@@ -155,11 +155,11 @@ function completarFormulario(element, index, arr) {
   // let email_cliente = element.email_cliente;
   // let celular_cliente = element.celular_cliente;
 
-  document.getElementById('txt_DV').value = element.dv_cliente;
-  document.getElementById('txt_nombres').value = element.nombres_cliente;
-  document.getElementById('txt_apellidos').value = element.apellidos_cliente;
-  document.getElementById('txt_email').value = element.email_cliente;
-  document.getElementById('txt_celular').value = parseInt(element.celular_cliente);
+  document.getElementById('txt_DV').value = element.dv;
+  document.getElementById('txt_nombres').value = element.nombres;
+  document.getElementById('txt_apellidos').value = element.apellidos;
+  document.getElementById('txt_email').value = element.email;
+  document.getElementById('txt_celular').value = element.celular;
   
 }
 
@@ -222,9 +222,9 @@ function obtenerDatosEliminar(p_id_cliente){
 
 
 function completarEtiqueta(element,index,arr){
-  let nombres_cliente = element.nombre_cliente;
-  let apellidos_cliente = element.apellidos_cliente;
-  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar el cliente? <b>" + nombres_cliente + apellidos_cliente + "</b>";
+  let nombres_cliente = element.nombres;
+  let apellidos_cliente = element.apellidos;
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar el cliente? <b>" + nombres_cliente + " "+ apellidos_cliente + "</b>";
 }
 
 
