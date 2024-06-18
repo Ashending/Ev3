@@ -35,7 +35,7 @@ function completarFila(element,index,arr){
 }
 
 
-function agregarCliente(){
+function agregarCliente() {
   //Obtenemos el tipo de gestión que ingresa el usuario
   let dv_cliente = document.getElementById("txt_DV").value;
   let nombres_cliente = document.getElementById("txt_nombres").value;
@@ -66,7 +66,7 @@ function agregarCliente(){
     redirect: "follow"
   };
 
-  // Request tabla resultado
+  // Request tabla cliente
   fetch("http://144.126.210.74:8080/api/cliente", requestOptions)
     .then((response) => {
       if(response.status == 200) {
@@ -75,6 +75,92 @@ function agregarCliente(){
     })
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
+}
+
+
+function actualizarCliente(){
+  //Obtenemos el tipo de gestión que ingresa el usuario
+  let dv_cliente = document.getElementById("txt_DV").value;
+  let nombres_cliente = document.getElementById("txt_nombres").value;
+  let apellidos_cliente = document.getElementById("txt_apellidos").value;
+  let email_cliente = document.getElementById("txt_email").value;
+  let celular_cliente = parseInt(document.getElementById("txt_celular").value);
+  
+  //Encabezado de la solicitud
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  let fechaHoraActual = obtenerFechaHora();
+  //Carga útil de datos
+  const raw = JSON.stringify({
+    "dv": dv_cliente,
+    "nombres": nombres_cliente,
+    "apellidos": apellidos_cliente,
+    "email": email_cliente,
+    "celular": celular_cliente,
+    "fecha_registro": fechaHoraActual
+  });
+  
+  //Opciones de solicitud
+  const requestOptions = {
+    method: "PATCH",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+  
+  //Ejecutamos solicitud
+  fetch("http://144.126.210.74:8080/api/cliente/"+ g_id_cliente, requestOptions)
+    .then((response) => {
+      if(response.status == 200){
+        location.href ="listar.html";
+      }
+    })
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+}
+
+
+function obtenerIdActualizar(){
+  //obtener datos de la solicitud
+  const queryString  = window.location.search;
+  //obtenemos todos los parámetros
+  const parametros = new URLSearchParams(queryString);
+  //Nos posicionamos sobre un parámetro y obtenemos su valor actual
+  const p_id_cliente = parametros.get('id');
+  g_id_cliente = p_id_cliente;
+  obtenerDatosActualizar(g_id_cliente);
+
+}
+
+
+function obtenerDatosActualizar(p_id_cliente){
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+  
+  fetch("http://144.126.210.74:8080/api/cliente/"+p_id_cliente, requestOptions)
+    .then((response) => response.json())
+    .then((json) => json.forEach(completarFormulario))
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+}
+
+
+function completarFormulario(element, index, arr) {
+  // let dv_cliente = element.dv_cliente;
+  // let nombres_cliente = element.nombres_cliente;
+  // let apellidos_cliente = element.apellidos_cliente;
+  // let email_cliente = element.email_cliente;
+  // let celular_cliente = element.celular_cliente;
+
+  document.getElementById('txt_DV').value = element.dv_cliente;
+  document.getElementById('txt_nombres').value = element.nombres_cliente;
+  document.getElementById('txt_apellidos').value = element.apellidos_cliente;
+  document.getElementById('txt_email').value = element.email_cliente;
+  document.getElementById('txt_celular').value = parseInt(element.celular_cliente);
+  
 }
 
 
