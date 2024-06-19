@@ -1,15 +1,15 @@
-var g_id_tipo_gestion ="";
+let g_id_tipo_gestion ="";
 
 //Función para agregar tipo de gestión
 function agregarTipoGestion(){
   //Obtenemos el tipo de gestión que ingresa el usuario
-  var nombre_tipo_gestion = document.getElementById("txt_nombre").value;
+  let nombre_tipo_gestion = document.getElementById("txt_nombre").value;
 
   //Encabezado de la solicitud
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  var fechaHoraActual = obtenerFechaHora();
+  let fechaHoraActual = obtenerFechaHora();
 
   //Carga útil de datos
   const raw = JSON.stringify({
@@ -56,7 +56,7 @@ function listarTipoGestion(){
 
 function completarFila(element,index,arr){
 
-  var fechaHoraFormateada = formatearFechaHora(element.fecha_registro);
+  let fechaHoraFormateada = formatearFechaHora(element.fecha_registro);
 
   arr[index] = document.querySelector("#tbl_tipo_gestion tbody").innerHTML +=
   `<tr>
@@ -128,7 +128,7 @@ function obtenerDatosActualizar(p_id_tipo_gestion){
 
 
 function completarEtiqueta(element,index,arr){
-  var nombre_tipo_gestion = element.nombre_tipo_gestion;
+  let nombre_tipo_gestion = element.nombre_tipo_gestion;
   document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar el tipo de gestión? <b>" + nombre_tipo_gestion + "</b>";
 
 
@@ -136,7 +136,7 @@ function completarEtiqueta(element,index,arr){
 
 
 function completarFormulario(element,index,arr){
-  var nombre_tipo_gestion = element.nombre_tipo_gestion;
+  let nombre_tipo_gestion = element.nombre_tipo_gestion;
   document.getElementById('txt_nombre').value = nombre_tipo_gestion;
 
 }
@@ -144,7 +144,7 @@ function completarFormulario(element,index,arr){
 
 function actualizarTipoGestion(){
   //Obtenemos el tipo de gestión que ingresa el usuario
-  var nombre_tipo_gestion = document.getElementById("txt_nombre").value;
+  let nombre_tipo_gestion = document.getElementById("txt_nombre").value;
   
   //Encabezado de la solicitud
   const myHeaders = new Headers();
@@ -205,9 +205,9 @@ function eliminarTipoGestion(){
 
 
 function obtenerFechaHora(){
-  var fechaHoraActual = new Date();
+  let fechaHoraActual = new Date();
 
-  var fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES',{
+  let fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES',{
     hour12 :false,
     year :'numeric',
     month :'2-digit',
@@ -222,8 +222,8 @@ function obtenerFechaHora(){
 
 
 function formatearFechaHora(fecha_registro){
-  var fechaHoraActual = new Date(fecha_registro);
-  var fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES',{
+  let fechaHoraActual = new Date(fecha_registro);
+  let fechaHoraFormateada = fechaHoraActual.toLocaleString('es-ES',{
     hour12 :false,
     year :'numeric',
     month :'2-digit',

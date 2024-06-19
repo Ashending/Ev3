@@ -1,3 +1,6 @@
+let g_id_resultado ="";
+
+
 function listarResultado() {
   const requestOptions = {
     method: "GET",

@@ -1,3 +1,6 @@
+let g_id_usuario ="";
+
+
 function listarUsuario() {
   const requestOptions = {
     method: "GET",

@@ -1,3 +1,5 @@
+let g_id_cliente = "";
+ 
 function listarClientes() {
   const requestOptions = {
     method: "GET",
