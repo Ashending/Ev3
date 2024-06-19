@@ -39,6 +39,7 @@ function completarFila(element,index,arr){
 
 function agregarCliente() {
   //Obtenemos el tipo de gestión que ingresa el usuario
+  var id_cliente = parseInt(document.getElementById("txt_ID").value);
   let dv_cliente = document.getElementById("txt_DV").value;
   let nombres_cliente = document.getElementById("txt_nombres").value;
   let apellidos_cliente = document.getElementById("txt_apellidos").value;
@@ -52,7 +53,7 @@ function agregarCliente() {
   let fechaHoraActual = obtenerFechaHora();
   //Carga util de datos
   const raw = JSON.stringify({
-    "id_cliente": 100002,
+    "id_cliente": id_cliente,
     "dv": dv_cliente,
     "nombres": nombres_cliente,
     "apellidos": apellidos_cliente,
@@ -82,7 +83,6 @@ function agregarCliente() {
 
 function actualizarCliente(){
   //Obtenemos el tipo de gestión que ingresa el usuario
-  let dv_cliente = document.getElementById("txt_DV").value;
   let nombres_cliente = document.getElementById("txt_nombres").value;
   let apellidos_cliente = document.getElementById("txt_apellidos").value;
   let email_cliente = document.getElementById("txt_email").value;
@@ -92,15 +92,12 @@ function actualizarCliente(){
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   
-  let fechaHoraActual = obtenerFechaHora();
   //Carga útil de datos
   const raw = JSON.stringify({
-    "dv": dv_cliente,
     "nombres": nombres_cliente,
     "apellidos": apellidos_cliente,
     "email": email_cliente,
     "celular": celular_cliente,
-    "fecha_registro": fechaHoraActual
   });
   
   //Opciones de solicitud
@@ -151,13 +148,7 @@ function obtenerDatosActualizar(p_id_cliente){
 
 
 function completarFormulario(element, index, arr) {
-  // let dv_cliente = element.dv_cliente;
-  // let nombres_cliente = element.nombres_cliente;
-  // let apellidos_cliente = element.apellidos_cliente;
-  // let email_cliente = element.email_cliente;
-  // let celular_cliente = element.celular_cliente;
 
-  document.getElementById('txt_DV').value = element.dv;
   document.getElementById('txt_nombres').value = element.nombres;
   document.getElementById('txt_apellidos').value = element.apellidos;
   document.getElementById('txt_email').value = element.email;
