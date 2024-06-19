@@ -42,7 +42,7 @@ function completarFila(element,index,arr){
 
 function agregarUsuario() {
   //Obtenemos el tipo de gestión que ingresa el usuario
-  let id_usuario = parseInt(document.getElementById("txt_ID").value);
+  var id_usuario = parseInt(document.getElementById("txt_ID").value);
   let dv_usuario = document.getElementById("txt_DV").value;
   let nombres_usuario = document.getElementById("txt_nombres").value;
   let apellidos_usuario = document.getElementById("txt_apellidos").value;
@@ -90,7 +90,6 @@ function agregarUsuario() {
 
 function actualizarUsuario(){
   //Obtenemos el tipo de gestión que ingresa el usuario
-  let dv_usuario = document.getElementById("txt_DV").value;
   let nombres_usuario = document.getElementById("txt_nombres").value;
   let apellidos_usuario = document.getElementById("txt_apellidos").value;
   let email_usuario = document.getElementById("txt_email").value;
@@ -105,14 +104,12 @@ function actualizarUsuario(){
   let fechaHoraActual = obtenerFechaHora();
   //Carga útil de datos
   const raw = JSON.stringify({
-    "dv": dv_usuario,
     "nombres": nombres_usuario,
     "apellidos": apellidos_usuario,
     "email": email_usuario,
     "celular": celular_usuario,
     "username": username_usuario,
     "password": password_usuario,
-    "fecha_registro": fechaHoraActual
   });
   
   //Opciones de solicitud
@@ -164,7 +161,6 @@ function obtenerDatosActualizar(p_id_usuario){
 
 function completarFormulario(element, index, arr) {
 
-  document.getElementById('txt_DV').value = element.dv;
   document.getElementById('txt_nombres').value = element.nombres;
   document.getElementById('txt_apellidos').value = element.apellidos;
   document.getElementById('txt_email').value = element.email;
