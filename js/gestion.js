@@ -283,7 +283,7 @@ function completarEtiqueta(element,index,arr){
 // ######### LISTAS DESPLEGABLES ######### 
 function cargarListasDesplegables(){
   cargarSelectResultado();
-  cargarSelectgestion();
+  cargarSelectCliente();
   cargarSelectUsuario();
   cargarSelectTipoGestion();
 }
