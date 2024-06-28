@@ -30,7 +30,6 @@ function completarFila(element,index,arr){
     <td>${element.email}</td>
     <td>${element.celular}</td>
     <td>${element.username}</td>
-    <td>${element.password}</td>
     <td>${fechaHoraFormateada}</td>
     <td>
     <a href='actualizar.html?id=${element.id_usuario}' class='btn btn-warning'>Actualizar</a> 
