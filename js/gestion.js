@@ -93,6 +93,7 @@ function agregarGestion() {
 
 // ######### ACTUALLIZAR #########
 function actualizarGestion(){
+  obtenerIdActualizar();
 
   let id_usuario      = document.getElementById("sel_id_usuario").value;
   let id_cliente      = document.getElementById("sel_id_cliente").value;
@@ -147,70 +148,6 @@ function obtenerIdActualizar(){
   const p_id_gestion = parametros.get('id');
   g_id_gestion = p_id_gestion;
 }
-
-
-// function eliminarGestion() {
-//
-//   const myHeaders = new Headers();
-//   myHeaders.append("Content-Type", "application/json");
-//
-//   //Opciones de solicitud
-//   const requestOptions = {
-//     method: "DELETE",
-//     headers: myHeaders,
-//     redirect: "follow"
-//   };
-//   
-//   //Ejecutamos solicitud
-//   fetch("http://144.126.210.74:8080/api/cliente/"+ g_id_gestion, requestOptions)
-//     .then((response) => {
-//       
-//       //Cambiar por elementos de bootstrap
-//       if(response.status == 200){
-//         location.href ="listar.html";
-//       }
-//       if(response.status == 400){
-//         alert("No es posible eliminar. Registro está siendo utilizado.");
-//       }
-//     })
-//     .then((result) => console.log(result))
-//     .catch((error) => console.error(error));
-// }
-//
-//
-// function obtenerIdEliminar(){
-//   //obtener datos de la solicitud
-//   const queryString  = window.location.search;
-//   //obtenemos todos los parámetros
-//   const parametros = new URLSearchParams(queryString);
-//   //Nos posicionamos sobre un parámetro y obtenemos su valor actual
-//   const p_id_gestion = parametros.get('id');
-//   g_id_gestion = p_id_gestion;
-//   obtenerDatosEliminar(g_id_gestion);
-// }
-//
-//
-// function obtenerDatosEliminar(p_id_gestion) {
-//   const requestOptions = {
-//     method: "GET",
-//     redirect: "follow"
-//   };
-//   
-//   fetch("http://144.126.210.74:8080/api/gestion/"+ g_id_gestion, requestOptions)
-//     .then((response) => response.json())
-//     .then((json) => json.forEach(completarEtiqueta))
-//     .then((result) => console.log(result))
-//     .catch((error) => console.error(error));
-// }
-//
-// function completarEtiqueta(element,index,arr) {
-//   let nombre_usuario = element.nombre_usuario;
-//   let nombre_cliente = element.nombre_cliente;
-//   document.getElementById('lbl_eliminar').innerHTML =
-//     "¿Desea eliminar el gestion? <b>" 
-//       + "Nombre Cliente: " + nombre_usuario + " "
-//       + "Nombre Usuario: " + nombre_cliente + "</b>";
-// }
 
 
 function eliminarGestion(){
