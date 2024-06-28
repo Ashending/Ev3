@@ -250,33 +250,14 @@ function obtenerIdEliminar(){
   //Nos posicionamos sobre un parámetro y obtenemos su valor actual
   const p_id_gestion = parametros.get('id');
   g_id_gestion = p_id_gestion;
-  obtenerDatosEliminar(g_id_gestion);
+  completarEtiqueta(g_id_gestion);
 
 }
 
 
-function obtenerDatosEliminar(p_id_gestion){
-  const requestOptions = {
-    method: "GET",
-    redirect: "follow"
-  };
-  
-  fetch("http://144.126.210.74:8080/api/gestion/"+p_id_gestion, requestOptions)
-    .then((response) => response.json())
-    .then((json) => json.forEach(completarEtiqueta))
-    .then((result) => console.log(result))
-    .catch((error) => console.error(error));
-
-}
-
-
-function completarEtiqueta(element,index,arr){
-  let nombre_usuario = element.nombre_usuario;
-  let nombre_cliente = element.nombre_cliente;
+function completarEtiqueta(id_eliminar){
   document.getElementById('lbl_eliminar').innerHTML =
-    "¿Desea eliminar el gestion? <b>" 
-      + "Nombre Cliente: " + nombre_usuario + " "
-      + "Nombre Usuario: " + nombre_cliente + "</b>";
+    "¿Desea eliminar el gestion? <b> ID: " + id_eliminar + "</b>";
 }
 
 
